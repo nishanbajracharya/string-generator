@@ -1,8 +1,6 @@
-import { example } from '../index';
-
 describe('Test', () => {
   it('should return true', () => {
-    const result = example();
+    const result = true;
 
     expect(result).toEqual(true);
   });
