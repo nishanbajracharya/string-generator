@@ -5,6 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "test": "jest",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "build": "esbuild index.ts --bundle --platform=node --outfile=build/lib.js"
   },
   "keywords": [
