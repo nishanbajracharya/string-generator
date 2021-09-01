@@ -1,7 +1,8 @@
-const defaultLowerCaseSet = 'abcdefghijklmnopqrstuvwxyz';
-const defaultUpperCaseSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const defaultNumberSet = '0123456789';
-const defaultSymbolSet = '!@#$%^&*()_+-=[]{};:<>,./?~|';
+export const defaultLowerCaseSet = 'abcdefghijklmnopqrstuvwxyz';
+export const defaultUpperCaseSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const defaultNumberSet = '0123456789';
+export const defaultSymbolSet = '!@#$%^&*()_+-={};:<>,./?~|';
+export const defaultLength = 12;
 
 function shuffle(str: string): string {
   const arr = str.split('');
@@ -12,9 +13,11 @@ function shuffle(str: string): string {
 }
 
 type Options = {
+  length?: number;
+
   defaults?: boolean;
 
-  number?: boolean;
+  number?: boolean; // Not less than 0
   lowerCase?: boolean;
   upperCase?: boolean;
   symbol?: boolean;
@@ -26,6 +29,8 @@ type Options = {
 };
 
 const defaultOptions = {
+  length: defaultLength,
+
   defaults: true,
 
   number: true,
@@ -39,11 +44,13 @@ const defaultOptions = {
   symbolSet: '',
 };
 
-export default function generate(
-  length = 12,
-  options: Options = defaultOptions
-): string {
+export function generate(options: Options): string;
+
+export default function generate(options?: Options): string {
   options = { ...defaultOptions, ...options };
+  let length = options.length === 0 ? 0 : options.length;
+
+  if (!length || length < 0) length = 0;
 
   let string = '';
 
