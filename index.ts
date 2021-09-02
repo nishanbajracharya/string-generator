@@ -5,11 +5,7 @@ export const defaultSymbolSet = '!@#$%^&*()_+-={};:<>,./?~|';
 export const defaultLength = 12;
 
 function shuffle(str: string): string {
-  const arr = str.split('');
-
-  arr.sort(() => 0.5 - Math.random());
-
-  return arr.join('');
+  return str.split('').sort(() => 0.5 - Math.random()).join('');
 }
 
 type Options = {
